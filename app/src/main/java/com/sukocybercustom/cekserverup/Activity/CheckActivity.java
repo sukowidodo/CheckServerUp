@@ -14,6 +14,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.sukocybercustom.cekserverup.R;
+import com.sukocybercustom.cekserverup.util.Utility;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -72,7 +73,7 @@ public class CheckActivity extends AppCompatActivity {
         //proses
     protected String doInBackground(Void... v) {
         try {
-            if (isServerReachable(CheckActivity.this,getServer())){
+            if (Utility.isServerReachable(CheckActivity.this,getServer())){
                 status = "server up";
             }else {
                 status = "server down";
@@ -96,39 +97,5 @@ public class CheckActivity extends AppCompatActivity {
     }
 }
 
-    public static boolean isReachableByTcp(String host, int port, int timeout) {
-        try {
-            Socket socket = new Socket();
-            SocketAddress socketAddress = new InetSocketAddress(host, port);
-            socket.connect(socketAddress, timeout);
-            socket.close();
-            return true;
-        } catch (IOException e) {
-            Log.e("Error",e.getMessage());
-            return false;
-        }
-    }
 
-    static public boolean isServerReachable(Context context,String URLL) {
-        ConnectivityManager connMan = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo netInfo = connMan.getActiveNetworkInfo();
-        if (netInfo != null && netInfo.isConnected()) {
-            try {
-                URL urlServer = new URL(URLL);
-                HttpURLConnection urlConn = (HttpURLConnection) urlServer.openConnection();
-                urlConn.setConnectTimeout(1000); //<- 1Seconds Timeout
-                urlConn.connect();
-                if (urlConn.getResponseCode() == 200) {
-                    return true;
-                } else {
-                    return false;
-                }
-            } catch (MalformedURLException e1) {
-                return false;
-            } catch (IOException e) {
-                return false;
-            }
-        }
-        return false;
-    }
 }

@@ -10,7 +10,7 @@
 
 
     <ProgressBar
-        android:id="@+id/progressBar"
+        android:id="@+id/progress"
         style="?android:attr/progressBarStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -30,7 +30,7 @@
             android:text="Real Time Check" />
 
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/etServer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -43,14 +43,14 @@
             android:orientation="horizontal">
 
             <CheckBox
-                android:id="@+id/checkBox"
+                android:id="@+id/cbPort"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
                 android:text="custom port" />
 
             <EditText
-                android:id="@+id/editText2"
+                android:id="@+id/etPort"
                 android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:enabled="false"
@@ -59,8 +59,14 @@
 
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/tvStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
+
         <Button
-            android:id="@+id/button"
+            android:id="@+id/btnRefresh"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Ping" />
